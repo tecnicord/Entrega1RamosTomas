@@ -7,4 +7,8 @@ def tractores(request):
     contexto = {
         'tractores': tractores1
     }
-    return render(request, 'tractores.html', contexto)
+    return render(request, 'Tecnicord/tractores.html', contexto)
+
+def inicio(request):
+
+    return render (request, 'index.html')

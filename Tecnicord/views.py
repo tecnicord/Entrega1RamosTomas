@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from Tecnicord.forms import TractoresFormulario, CamionesFormulario, PulverizadorasFormulario
 from Tecnicord.models import Tractores, Camiones, Pulverizadoras
 
 def tractores(request):
@@ -25,8 +26,24 @@ def pulverizadoras(request):
     }
     return render(request, 'Tecnicord/pulverizadoras.html', contexto)
 
-
-
 def inicio(request):
 
     return render (request, 'index.html')
+
+def tractores_formulario(request):
+    contexto = {
+        'form': TractoresFormulario()
+    }
+    return render(request, 'Tecnicord/tractores_formulario.html', contexto)
+
+def camiones_formulario(request):
+    contexto = {
+        'form': CamionesFormulario()
+    }
+    return render(request, 'Tecnicord/camiones_formulario.html', contexto)
+
+def pulverizadoras_formulario(request):
+    contexto = {
+        'form': PulverizadorasFormulario()
+    }
+    return render(request, 'Tecnicord/pulverizadoras_formulario.html', contexto)

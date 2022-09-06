@@ -6,14 +6,6 @@ Tractores Formulario
 
 {% block inicio %}
 
-    <form action=""method="POST">
-    {% csrf_token %}
-
-        {{ form.as_p }}
-
-        <input type="submit" value="Enviar">
-
-    </form>
 
     {% for tractor in tractores %}
         El nombre del Tractor es {{ tractor.nombre }} con {{ tractor.potencia }} HP de potencia

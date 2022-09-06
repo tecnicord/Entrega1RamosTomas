@@ -11,3 +11,6 @@ class CamionesFormulario(forms.Form):
 class PulverizadorasFormulario(forms.Form):
     nombre = forms.CharField(max_length=40)
     litros = forms.IntegerField()
+
+class BusquedaPotenciaFormulario(forms.Form):
+    potencia = forms.IntegerField()

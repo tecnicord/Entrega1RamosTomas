@@ -6,6 +6,10 @@ Pulverizadoras
 
 {% block inicio %}
 
-LAS PULVERIZADORAS QUE VENDE TECNICORD LLEVAN DESDE 2000 LITROS A 6000 LITROS
+ {% for pulverizadora in pulverizadoras %}
+        El nombre de la Pulverizadora es {{ pulverizadora.nombre }} con {{ pulverizadora.litros }} Litros de carga
+    <a href="{% url 'TecnicordEliminarPulverizadora' pulverizadora.litros %}">-X-</a>
+    <br>
+    {% endfor %}
 
 {% endblock %}

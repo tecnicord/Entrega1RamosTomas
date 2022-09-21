@@ -1,7 +1,27 @@
 from django.shortcuts import render, redirect
-from Tecnicord.forms import TractoresFormulario, CamionesFormulario, PulverizadorasFormulario, BusquedaPotenciaFormulario
+from Tecnicord.forms import TractoresFormulario, CamionesFormulario, PulverizadorasFormulario, BusquedaPotenciaFormulario, BusquedaCargaFormulario, BusquedaLitrosFormulario
 from Tecnicord.models import Tractores, Camiones, Pulverizadoras
+from django.contrib import messages
 
+def eliminar_tractores(request, potencia):
+    tractor_eliminar = Tractores.objects.get(potencia=potencia)
+    tractor_eliminar.delete()
+    messages.info(request, f"El Tractor {tractor_eliminar} fue eliminado")
+
+    return redirect ("TecnicordTractores")
+
+def eliminar_camiones(request, carga):
+    camion_eliminar = Camiones.objects.get(carga=carga)
+    camion_eliminar.delete()
+    messages.info(request, f"El Camion {camion_eliminar} fue eliminado")
+    return redirect ("TecnicordCamiones")
+
+def eliminar_pulverizadoras(request, litros):
+    pulverizadora_eliminar = Pulverizadoras.objects.get(litros=litros)
+    pulverizadora_eliminar.delete()
+    messages.info(request, f"La Pulverizadora {pulverizadora_eliminar} fue eliminada")
+
+    return redirect ("TecnicordPulverizadoras")
 
 def busqueda_potencia_post(request):
     potencia = request.GET.get('potencia')
@@ -20,30 +40,62 @@ def busqueda_potencia(request):
 
     return render (request, 'Tecnicord/busqueda_potencia.html', contexto)
 
+def busqueda_carga_post(request):
+    carga = request.GET.get('carga')
+
+    camiones = Camiones.objects.filter(carga__icontains=carga)
+    contexto =  {
+        'camiones': camiones
+    }
+
+    return render (request, 'Tecnicord/carga_filtrado.html', contexto)
+def busqueda_carga(request):
+
+    contexto = {
+        'form': BusquedaCargaFormulario(),
+    }
+
+    return render (request, 'Tecnicord/busqueda_carga.html', contexto)
+
+
+def busqueda_litros_post(request):
+    litros = request.GET.get('litros')
+
+    pulverizadoras = Pulverizadoras.objects.filter(litros__icontains=litros)
+    contexto =  {
+        'pulverizadoras': pulverizadoras
+    }
+
+    return render (request, 'Tecnicord/litros_filtrado.html', contexto)
+def busqueda_litros(request):
+
+    contexto = {
+        'form': BusquedaLitrosFormulario(),
+    }
+
+    return render (request, 'Tecnicord/busqueda_litros.html', contexto)
+
 
 
 
 def tractores(request):
-    tractores1 = Tractores(nombre="6180", potencia=180)
-    tractores1.save()
-    contexto = {
-        'tractores': tractores1
+    tractores = Tractores.objects.all()
+    contexto =  {
+        'tractores' : tractores
     }
     return render(request, 'Tecnicord/tractores.html', contexto)
 
 def camiones(request):
-    camiones1 = Camiones(nombre="8700", carga=7000)
-    camiones1.save()
-    contexto = {
-        'camiones': camiones1
+    camiones = Camiones.objects.all()
+    contexto =  {
+        'camiones' : camiones
     }
     return render(request, 'Tecnicord/camiones.html', contexto)
 
 def pulverizadoras(request):
-    pulverizadoras1 = Pulverizadoras(nombre="Stronger", litros=3000)
-    pulverizadoras1.save()
-    contexto = {
-        'pulverizadoras': pulverizadoras1
+    pulverizadoras = Pulverizadoras.objects.all()
+    contexto =  {
+        'pulverizadoras' : pulverizadoras
     }
     return render(request, 'Tecnicord/pulverizadoras.html', contexto)
 
@@ -65,12 +117,11 @@ def tractores_formulario(request):
 
             return redirect('TecnicordTractoresFormulario')
 
-    tractores = Tractores.objects.all()
+
 
 
     contexto = {
-        'form': TractoresFormulario(),
-        'tractores': tractores
+        'form': TractoresFormulario()
     }
     return render(request, 'Tecnicord/tractores_formulario.html', contexto)
 

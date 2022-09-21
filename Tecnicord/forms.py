@@ -14,3 +14,9 @@ class PulverizadorasFormulario(forms.Form):
 
 class BusquedaPotenciaFormulario(forms.Form):
     potencia = forms.IntegerField()
+
+class BusquedaCargaFormulario(forms.Form):
+    carga = forms.IntegerField()
+
+class BusquedaLitrosFormulario(forms.Form):
+    litros = forms.IntegerField()

@@ -6,6 +6,10 @@ Tractores
 
 {% block inicio %}
 
-LOS TRACTORES QUE VENDE TECNICORD VAN DESDE LOS 15 HP A LOS 220 HP DE POTENCIA
+ {% for tractor in tractores %}
+        El nombre del Tractor es {{ tractor.nombre }} con {{ tractor.potencia }} HP de potencia
+    <a href="{% url 'TecnicordEliminarTractor' tractor.potencia %}">-X-</a>
+    <br>
+    {% endfor %}
 
 {% endblock %}

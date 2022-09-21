@@ -1,15 +1,16 @@
 {% extends 'index.html' %}
 
 {% block title %}
-Camiones
+Camiones Formulario
 {% endblock %}
 
 {% block inicio %}
 
- {% for camion in camiones %}
+
+    {% for camion in camiones %}
         El nombre del Camion es {{ camion.nombre }} con {{ camion.carga }} Kgs de carga
-    <a href="{% url 'TecnicordEliminarCamion' camion.carga %}">-X-</a>
-    <br>
+        <br>
     {% endfor %}
+
 
 {% endblock %}

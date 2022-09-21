@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Pulverizadoras Formulario
+{% endblock %}
+
+{% block inicio %}
+
+
+    {% for pulverizadora in pulverizadoras %}
+        El nombre de la pulverizadora es {{ pulverizadora.nombre }} con {{ pulverizadora.litros }} Litros de carga
+        <br>
+    {% endfor %}
+
+
+{% endblock %}

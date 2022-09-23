@@ -6,10 +6,11 @@ Camiones
 
 {% block inicio %}
 
- {% for camion in camiones %}
+ {% for camion in object_list %}
         El nombre del Camion es {{ camion.nombre }} con {{ camion.carga }} Kgs de carga
     <a href="{% url 'TecnicordEliminarCamion' camion.carga %}">-X-</a>
+    <a href="{% url 'TecnicordEditarCamiones' camion.carga %}" > Editar </a>
     <br>
-    {% endfor %}
+ {% endfor %}
 
 {% endblock %}

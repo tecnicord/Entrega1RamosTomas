@@ -6,10 +6,11 @@ Pulverizadoras
 
 {% block inicio %}
 
- {% for pulverizadora in pulverizadoras %}
+ {% for pulverizadora in object_list %}
         El nombre de la Pulverizadora es {{ pulverizadora.nombre }} con {{ pulverizadora.litros }} Litros de carga
     <a href="{% url 'TecnicordEliminarPulverizadora' pulverizadora.litros %}">-X-</a>
+    <a href="{% url 'TecnicordEditarPulverizadora' pulverizadora.litros %}" > Editar </a>
     <br>
-    {% endfor %}
+ {% endfor %}
 
 {% endblock %}

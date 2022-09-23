@@ -4,6 +4,12 @@
                 <a class="navbar-brand" href="{% url 'TecnicordTractores' %}">Tractores</a>
                 <a class="navbar-brand" href="{% url 'TecnicordCamiones' %}">Camiones</a>
                 <a class="navbar-brand" href="{% url 'TecnicordPulverizadoras' %}">Pulverizadoras</a>
-                <a class="btn btn-primary" href="#signup">Inicie Sesión</a>
+                {% if user.is_authenticated %}
+                        <h5>User: {{ user.get_username }}<h5>
+                        <a class="btn btn-primary" href="{% url 'UserTecnicordLogout' %}">Logout</a>
+                {% else %}
+                    <a class="btn btn-primary" href="{% url 'UserTecnicordLogin' %}">Login</a>
+                    <a class="btn btn-primary" href="{% url 'UserTecnicordRegister' %}">Registro</a>
+                {% endif %}
             </div>
         </nav>

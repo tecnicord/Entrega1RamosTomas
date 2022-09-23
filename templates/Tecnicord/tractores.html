@@ -6,10 +6,11 @@ Tractores
 
 {% block inicio %}
 
- {% for tractor in tractores %}
+ {% for tractor in object_list %}
         El nombre del Tractor es {{ tractor.nombre }} con {{ tractor.potencia }} HP de potencia
     <a href="{% url 'TecnicordEliminarTractor' tractor.potencia %}">-X-</a>
+    <a href="{% url 'TecnicordEditarTractores' tractor.potencia %}" > Editar </a>
     <br>
-    {% endfor %}
+ {% endfor %}
 
 {% endblock %}

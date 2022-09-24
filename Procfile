@@ -1,0 +1,1 @@
+web: gunicorn Entrega1RamosTomas.wsgi

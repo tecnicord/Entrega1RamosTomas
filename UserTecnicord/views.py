@@ -18,10 +18,9 @@ def upload_avatar(request):
         if formulario.is_valid():
 
             data = formulario.cleaned_data
-            avatar = Avatar.objects.filter(user=data.get("usuario"))
+            avatar = Avatar.objects.get(user=data.get("usuario"))
 
             if len(avatar) > 0:
-                    avatar = avatar [0]
                     avatar.imagen = formulario.cleaned_data["imagen"]
                     avatar.save()
 
@@ -94,14 +93,7 @@ def register(request):
         form = UserRegisterForm(request.POST, request.FILES)
 
         if form.is_valid():
-            data = form.cleaned_data
-
-            usuario.username = data.get('username')
-            usuario.email = data.get('email')
-            usuario.last_name = data.get('last_name')
-
-            usuario.save()
-
+            user = form.save()
             messages.info(request, 'Tu usuario fue registrado correctamente!')
         else:
             messages.info(request, 'Tu usuario no pudo ser registrado!')
